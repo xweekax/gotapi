@@ -23,14 +23,15 @@ namespace gameofthronesassessment.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> GetTheCharacter()
+        [HttpPost]
+        public async Task<IActionResult> GetTheCharacter(string id)
         {
 
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("https://anapioficeandfire.com");
-            var response = await client.GetAsync("/api/characters/583");//this will return john snow, #583
+            var response = await client.GetAsync($"/api/characters/{id}");//this will return john snow, #583
             gotcharacter newCharacter = await response.Content.ReadAsAsync<gotcharacter>();
-
+            Console.WriteLine(id);
             return View(newCharacter);
         }
         /*
