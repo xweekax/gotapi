@@ -1,0 +1,36 @@
+﻿@model gotcharacter
+@{
+    ViewData["Title"] = "GetTheCharacter";
+}
+
+<h1>Character</h1>
+
+<table>
+    <tr>
+        <td>
+            ID: @Model.CharacterID
+            Name: @Model.Name
+        </td>
+    </tr>
+    <tr>
+        <td>
+            House: @Model.House
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Born: @Model.Born
+        </td>
+    </tr>
+    <tr>
+    <td>
+        Died: @Model.Died
+    </td>
+    </tr>
+    <tr>
+    <td>
+        Culture: @Model.Culture
+    </td>
+    </tr>
+</table>
+<a href="/character/pickcharacter">Select As Favorite</a>
