@@ -25,14 +25,20 @@ namespace gameofthronesassessment.Models
         public string House { get; set; }
         public string Allegiance { get; set; }
         public string Book { get; set; }
-      //  public namesearch[] name { get; set; }
-        
+        //  public namesearch[] name { get; set; }
+
+        public void Create()
+        {           
+            IDbConnection db = new SqlConnection("Server=GQJSN13\\SQLEXPRESS;Database=gameofthrones;user id=newuser;password=abc123;");
+            db.Insert(this);
+        }
+        /*
         public static void Create(string name, string gender, string culture, string born, string died, string house, string book)
         {
             gotcharacter picked = new gotcharacter() { Name = name, Gender = gender, Culture= culture, Born = born, Died=died, House=house, Book=book};
             IDbConnection db = new SqlConnection("Server=GQJSN13\\SQLEXPRESS;Database=gameofthrones;user id=newuser;password=abc123;");
             db.Insert(picked);
-        } 
+        } */
     }
 
 }
