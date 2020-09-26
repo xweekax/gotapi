@@ -12,6 +12,7 @@ using System.Data;
 
 namespace gameofthronesassessment.Controllers
 {
+   // [Table("characters")]
     public class Character : Controller
     {
         public IDbConnection GetConnection()
@@ -22,17 +23,17 @@ namespace gameofthronesassessment.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> GetTheCharacter(/*string name*/)
+        public async Task<IActionResult> GetTheCharacter()
         {
-           // new namesearch() { Name=name};
+
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("https://anapioficeandfire.com");
-            // var response = await client.GetAsync($"/api/characters?={name}");
             var response = await client.GetAsync("/api/characters/583");//this will return john snow, #583
             gotcharacter newCharacter = await response.Content.ReadAsAsync<gotcharacter>();
 
             return View(newCharacter);
         }
+        /*
         [HttpPost]
         public async Task<IActionResult> GetTheCharacter(string name)
         {
@@ -45,7 +46,7 @@ namespace gameofthronesassessment.Controllers
 
             return View(newCharacter);
         }
-
+        */
         public IActionResult PickCharacter(string name, string gender, string culture, string born, string died, string house, string book)
         {
             gotcharacter.Create(name, gender, culture, born, died, house, book);

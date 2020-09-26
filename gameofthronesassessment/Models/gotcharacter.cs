@@ -14,7 +14,7 @@ namespace gameofthronesassessment.Models
 {
     public class gotcharacter
     {
-        public int CharacterID { get; set; }
+      //  public int CharacterID { get; set; }
         public string Name { get; set; }
         public string Gender { get; set; }
         public string Culture { get; set; }
