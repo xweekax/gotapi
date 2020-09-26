@@ -1,4 +1,4 @@
-﻿@model gotcharacter
+﻿@model House
 @{
     ViewData["Title"] = "PickCharacter";
 }
@@ -6,11 +6,10 @@
 <h1>Pick A Character</h1>
 <form method="post" action="/character/getthecharacter">
     <select name="id" id="id">
-        <option value="583">Jon Snow</option>
-        <option value="271">Daenerys Targaryen</option>
-        <option value="529">Jaime Lannister</option>
-        <option value="238">Cersei Lannister</option>
-        <option value="148">Arya Stark</option>
+        @foreach (gotcharacter character in Model.characters)
+        {
+            <option value="@character.id">@character.Name</option>
+        }
     </select>
     <input type="submit" value="Pick Character"  />
 </form>

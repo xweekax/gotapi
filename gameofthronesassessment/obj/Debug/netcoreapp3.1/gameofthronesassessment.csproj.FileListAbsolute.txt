@@ -120,3 +120,4 @@ C:\devbuild4\gameofthronesassessment\gameofthronesassessment\obj\Debug\netcoreap
 C:\devbuild4\gameofthronesassessment\gameofthronesassessment\obj\Debug\netcoreapp3.1\gameofthronesassessment.MvcApplicationPartsAssemblyInfo.cache
 C:\devbuild4\gameofthronesassessment\gameofthronesassessment\obj\Debug\netcoreapp3.1\Razor\Views\Character\GetTheCharacter.cshtml.g.cs
 C:\devbuild4\gameofthronesassessment\gameofthronesassessment\obj\Debug\netcoreapp3.1\Razor\Views\Character\PickCharacter.cshtml.g.cs
+C:\devbuild4\gameofthronesassessment\gameofthronesassessment\obj\Debug\netcoreapp3.1\Razor\Views\Character\FavoriteCharacter.cshtml.g.cs

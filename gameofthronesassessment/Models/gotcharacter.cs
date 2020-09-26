@@ -14,7 +14,17 @@ namespace gameofthronesassessment.Models
 {
     public class gotcharacter
     {
+        public string id
+        {
+            get
+            {
+                string[] newid = url.Split('/');
+                return newid[newid.Length - 1];
+            }
+            private set { }
+        }
       //  public int CharacterID { get; set; }
+        public string url { get; set; }
         public string Name { get; set; }
         public string Gender { get; set; }
         public string Culture { get; set; }
