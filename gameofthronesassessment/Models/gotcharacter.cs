@@ -35,7 +35,8 @@ namespace gameofthronesassessment.Models
         public string House { get; set; }
         public string Allegiance { get; set; }
         public string Book { get; set; }
-        //  public namesearch[] name { get; set; }
+
+        public string SessionID { get; set; }
 
         public void Create()
         {           

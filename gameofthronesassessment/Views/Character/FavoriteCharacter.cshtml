@@ -1,7 +1,33 @@
-﻿
+﻿@model SessionCharacter
 @{
     ViewData["Title"] = "FavoriteCharacter";
 }
 
-<h1>FavoriteCharacter</h1>
+<h1>Favorite Characters</h1>
 
+@foreach(gotcharacter character in Model.charactersList)
+{
+<table>
+    <tr>
+        <td>
+            @character.Name
+        </td>
+        <td>
+            @character.House
+        </td>
+        <td>
+            @character.Culture
+        </td>
+        <td>
+            @character.Born
+        </td>
+        <td>
+            @character.Died
+        </td>
+        <td>
+            @character.Book
+        </td>
+        <td><a href="/character/getthecharacter?id=@character.id">Get All Details</a></td>
+    </tr>
+</table>
+}

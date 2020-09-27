@@ -22,48 +22,65 @@ namespace gameofthronesassessment.Controllers
         {
             return View();
         }
-        [HttpPost]
         public async Task<IActionResult> GetTheCharacter(string id)
-        {            
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://anapioficeandfire.com");
-            var response = await client.GetAsync($"/api/characters/{id}");//this will return the character based on their id
-            gotcharacter newCharacter = await response.Content.ReadAsAsync<gotcharacter>();
+        {
+            if (HttpContext.Request.Method == "POST")
+            {
+                string session_id = CookieManager.Session(HttpContext);
 
-            newCharacter.Create();
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri("https://anapioficeandfire.com");
+                var response = await client.GetAsync($"/api/characters/{id}");//this will return the character based on their id
+                gotcharacter newCharacter = await response.Content.ReadAsAsync<gotcharacter>();
 
-            return View(newCharacter);
+                newCharacter.SessionID = session_id;
+
+                newCharacter.Create();
+
+                return View(newCharacter);
+            }
+            else
+            {
+                string session_id = CookieManager.Session(HttpContext);
+
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri("https://anapioficeandfire.com");
+                var response = await client.GetAsync($"/api/characters/{id}");//this will return the character based on their id
+                gotcharacter newCharacter = await response.Content.ReadAsAsync<gotcharacter>();
+
+                newCharacter.SessionID = session_id;
+
+                return View(newCharacter);
+            }
         }
         
         public async Task<IActionResult> PickCharacter()
         {
+            CookieManager.Session(HttpContext);
+
             House house = await GetHouse(378);
 
             return View(house);
         }
 
-        public async Task<IActionResult> FavoriteCharacter()
+        public IActionResult FavoriteCharacter()
         {
+            string session_id = CookieManager.Session(HttpContext);
+            SessionCharacter sessionCharacter = new SessionCharacter(session_id);
 
-            //get session data
-
-            //get api data
-            
-            //get database list
-
-
-            return View();
+            return View(sessionCharacter);
         }
 
         public async Task<House> GetHouse(int houseID)
         {
+            CookieManager.Session(HttpContext);
+
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("https://anapioficeandfire.com");
             var response = await client.GetAsync($"/api/houses/{houseID}");//this will return the character based on their id
             House house = await response.Content.ReadAsAsync<House>();
 
             List<gotcharacter> characterList = new List<gotcharacter>();
-
 
             foreach (string url in house.SwornMembers)
             {
@@ -74,15 +91,17 @@ namespace gameofthronesassessment.Controllers
             house.characters = characterList.ToArray();
 
             return house;
-
         }
 
         public async Task<gotcharacter> GetTheCharacterByurl(string url)
         {
+            CookieManager.Session(HttpContext);
+
             HttpClient client = new HttpClient();
             var response = await client.GetAsync(url);
 
             return await response.Content.ReadAsAsync<gotcharacter>();
         }
+
     }
 }
